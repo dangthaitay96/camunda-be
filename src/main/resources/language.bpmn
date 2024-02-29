@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0f4m1jk" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.20.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
+  <bpmn:process id="language" isExecutable="true" camunda:historyTimeToLive="180">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0jnyeu4</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0jnyeu4" sourceRef="StartEvent_1" targetRef="language-id" />
+    <bpmn:exclusiveGateway id="Gateway_0288jit">
+      <bpmn:incoming>Flow_0n8k50k</bpmn:incoming>
+      <bpmn:outgoing>Flow_1vbiouo</bpmn:outgoing>
+      <bpmn:outgoing>Flow_15fax8p</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0n8k50k" sourceRef="language-id" targetRef="Gateway_0288jit" />
+    <bpmn:sequenceFlow id="Flow_1vbiouo" name="java" sourceRef="Gateway_0288jit" targetRef="Activity_1hc7bnq">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{language=='java'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_15fax8p" name="csharp" sourceRef="Gateway_0288jit" targetRef="Activity_18xriih">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{language=='csharp'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:userTask id="Activity_1hc7bnq" name="spring">
+      <bpmn:incoming>Flow_1vbiouo</bpmn:incoming>
+      <bpmn:outgoing>Flow_0gdsane</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_18xriih" name="dotnet">
+      <bpmn:incoming>Flow_15fax8p</bpmn:incoming>
+      <bpmn:outgoing>Flow_1xqy666</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_0qsogul">
+      <bpmn:incoming>Flow_0gdsane</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0gdsane" sourceRef="Activity_1hc7bnq" targetRef="Event_0qsogul" />
+    <bpmn:endEvent id="Event_1bcmoqf">
+      <bpmn:incoming>Flow_1xqy666</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1xqy666" sourceRef="Activity_18xriih" targetRef="Event_1bcmoqf" />
+    <bpmn:userTask id="language-id" name="select language">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="language" label="select language" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0jnyeu4</bpmn:incoming>
+      <bpmn:outgoing>Flow_0n8k50k</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="language">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0288jit_di" bpmnElement="Gateway_0288jit" isMarkerVisible="true">
+        <dc:Bounds x="445" y="92" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0afjnk6_di" bpmnElement="Activity_1hc7bnq">
+        <dc:Bounds x="570" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1e0aqah_di" bpmnElement="Activity_18xriih">
+        <dc:Bounds x="570" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0qsogul_di" bpmnElement="Event_0qsogul">
+        <dc:Bounds x="752" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1bcmoqf_di" bpmnElement="Event_1bcmoqf">
+        <dc:Bounds x="752" y="212" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_11xpq0l_di" bpmnElement="language-id">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0jnyeu4_di" bpmnElement="Flow_0jnyeu4">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0n8k50k_di" bpmnElement="Flow_0n8k50k">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="445" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vbiouo_di" bpmnElement="Flow_1vbiouo">
+        <di:waypoint x="495" y="117" />
+        <di:waypoint x="570" y="117" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="523" y="99" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15fax8p_di" bpmnElement="Flow_15fax8p">
+        <di:waypoint x="470" y="142" />
+        <di:waypoint x="470" y="230" />
+        <di:waypoint x="570" y="230" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="474" y="183" width="34" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0gdsane_di" bpmnElement="Flow_0gdsane">
+        <di:waypoint x="670" y="117" />
+        <di:waypoint x="752" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xqy666_di" bpmnElement="Flow_1xqy666">
+        <di:waypoint x="670" y="230" />
+        <di:waypoint x="752" y="230" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
